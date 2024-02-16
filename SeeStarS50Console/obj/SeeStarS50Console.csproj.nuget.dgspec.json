@@ -1,0 +1,154 @@
+{
+  "format": 1,
+  "restore": {
+    "C:\\Users\\james.smith\\OneDrive - Avantax, Inc\\Documents\\Visual Studio Misc Projects\\SeeStarS50Lib\\SeeStarS50Console\\SeeStarS50Console.csproj": {}
+  },
+  "projects": {
+    "C:\\Users\\james.smith\\OneDrive - Avantax, Inc\\Documents\\Visual Studio Misc Projects\\SeeStarS50Lib\\SeeStarS50Console\\SeeStarS50Console.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\james.smith\\OneDrive - Avantax, Inc\\Documents\\Visual Studio Misc Projects\\SeeStarS50Lib\\SeeStarS50Console\\SeeStarS50Console.csproj",
+        "projectName": "SeeStarS50Console",
+        "projectPath": "C:\\Users\\james.smith\\OneDrive - Avantax, Inc\\Documents\\Visual Studio Misc Projects\\SeeStarS50Lib\\SeeStarS50Console\\SeeStarS50Console.csproj",
+        "packagesPath": "C:\\Users\\james.smith\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\james.smith\\OneDrive - Avantax, Inc\\Documents\\Visual Studio Misc Projects\\SeeStarS50Lib\\SeeStarS50Console\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\james.smith\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
+          "https://ado.avantax.com/tfs/DefaultCollection/_packaging/Avantax/nuget/v3/index.json": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {
+              "C:\\Users\\james.smith\\OneDrive - Avantax, Inc\\Documents\\Visual Studio Misc Projects\\SeeStarS50Lib\\SeeStarS50Lib\\SeeStarS50Lib.csproj": {
+                "projectPath": "C:\\Users\\james.smith\\OneDrive - Avantax, Inc\\Documents\\Visual Studio Misc Projects\\SeeStarS50Lib\\SeeStarS50Lib\\SeeStarS50Lib.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "dependencies": {
+            "Microsoft.DotNet.ILCompiler": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[8.0.0, )",
+              "autoReferenced": true
+            },
+            "Microsoft.NET.ILLink.Tasks": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[8.0.0, )",
+              "autoReferenced": true
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "runtime.win-x64.Microsoft.DotNet.ILCompiler",
+              "version": "[8.0.0, 8.0.0]"
+            }
+          ],
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\james.smith\\OneDrive - Avantax, Inc\\Documents\\Visual Studio Misc Projects\\SeeStarS50Lib\\SeeStarS50Lib\\SeeStarS50Lib.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\james.smith\\OneDrive - Avantax, Inc\\Documents\\Visual Studio Misc Projects\\SeeStarS50Lib\\SeeStarS50Lib\\SeeStarS50Lib.csproj",
+        "projectName": "SeeStarS50Lib",
+        "projectPath": "C:\\Users\\james.smith\\OneDrive - Avantax, Inc\\Documents\\Visual Studio Misc Projects\\SeeStarS50Lib\\SeeStarS50Lib\\SeeStarS50Lib.csproj",
+        "packagesPath": "C:\\Users\\james.smith\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\james.smith\\OneDrive - Avantax, Inc\\Documents\\Visual Studio Misc Projects\\SeeStarS50Lib\\SeeStarS50Lib\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\james.smith\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
+          "https://ado.avantax.com/tfs/DefaultCollection/_packaging/Avantax/nuget/v3/index.json": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

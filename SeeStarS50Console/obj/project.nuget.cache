@@ -1,0 +1,12 @@
+{
+  "version": 2,
+  "dgSpecHash": "a4ixtBn6zT4fedUxUNQcxGPTUbCcGJQWDrjf/M8QLk/e8+49X5IWnbTk+x5erpMDV+eMd+ogfTt9GkNPTGSQog==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\james.smith\\OneDrive - Avantax, Inc\\Documents\\Visual Studio Misc Projects\\SeeStarS50Lib\\SeeStarS50Console\\SeeStarS50Console.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\james.smith\\.nuget\\packages\\microsoft.dotnet.ilcompiler\\8.0.0\\microsoft.dotnet.ilcompiler.8.0.0.nupkg.sha512",
+    "C:\\Users\\james.smith\\.nuget\\packages\\microsoft.net.illink.tasks\\8.0.0\\microsoft.net.illink.tasks.8.0.0.nupkg.sha512",
+    "C:\\Users\\james.smith\\.nuget\\packages\\runtime.win-x64.microsoft.dotnet.ilcompiler\\8.0.0\\runtime.win-x64.microsoft.dotnet.ilcompiler.8.0.0.nupkg.sha512"
+  ],
+  "logs": []
+}
