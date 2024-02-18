@@ -1,4 +1,5 @@
-﻿using System.Net;
+﻿using System.ComponentModel.Design;
+using System.Net;
 using System.Net.Sockets;
 using System.Numerics;
 using System.Reflection.Metadata.Ecma335;
@@ -18,12 +19,17 @@ namespace SeeStarS50Lib
         public string OpState { get; set; } = "";
         public int SessionTime {get; set;}
 
+        public Queue<JsonData> ResponseQueue { get; set; }
+        public Queue<string> EventQueue { get; set; }
+
         // Private Proterties
         private const int _port = 4700;
         private readonly IPAddress _ip;
         private Socket _socket { get; set; }
         private bool _isDebug {get;set;}
         private int _cmdId { get; set; }
+
+        public bool isConnected { get { return _socket.Connected; } }
 
 
         public SeeStarS50(string ip, int cmdId = 999, bool debug = false)
@@ -33,6 +39,21 @@ namespace SeeStarS50Lib
             _socket.Connect(_ip, _port);
             _isDebug = debug;
             _cmdId = 999;
+            EventQueue = new Queue<string>();
+            ResponseQueue = new Queue<JsonData>();
+        }
+
+        public void Reconnect()
+        {
+            _socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+            _socket.Connect(_ip, _port);
+        }
+
+        public void Disconnect()
+        {
+            isWatchEvents = false;
+            Thread.Sleep(_socket.ReceiveTimeout + 1000);
+            _socket.Close();
         }
 
         public void Dispose()
@@ -51,7 +72,8 @@ namespace SeeStarS50Lib
             } catch (Exception ex)
             {
                 //socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
-                _socket.Connect(_ip, _port);
+                //_socket.Connect(_ip, _port);
+                Reconnect();
                 SendCommand(command);
             }
         }
@@ -68,7 +90,8 @@ namespace SeeStarS50Lib
             } catch (Exception ex)
             {
                 //socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
-                _socket.Connect(_ip, _port);
+                //_socket.Connect(_ip, _port);
+                Reconnect();
                 return GetResponse();
             }
         }
@@ -78,33 +101,59 @@ namespace SeeStarS50Lib
             string msgRemainder = "";
             while (isWatchEvents)
             {
-                var data = GetResponse();
-                if (!string.IsNullOrWhiteSpace(data))
+                if (isConnected)
                 {
-                    msgRemainder += data;
-                    var firstIndex = msgRemainder.IndexOf("\r\n");
-                    while (firstIndex > 0)
+                    var data = GetResponse();
+                    if (!string.IsNullOrWhiteSpace(data))
                     {
-                        var firstMsg = msgRemainder.Substring(0, firstIndex);
-                        msgRemainder = msgRemainder.Substring(firstIndex + 2);
-                        var parsedData = JsonSerializer.Deserialize<JsonReturn>(firstMsg!, SourceGenerationContext.Default.JsonReturn);
-                        if (parsedData != null && parsedData.Event == "AutoGoto")
+                        msgRemainder += data;
+                        var firstIndex = msgRemainder.IndexOf("\r\n");
+                        while (firstIndex > 0)
                         {
-                            if (parsedData.state == "complete" || parsedData.state == "fail")
+                            var firstMsg = msgRemainder.Substring(0, firstIndex);
+                            msgRemainder = msgRemainder.Substring(firstIndex + 2);
+                            EventQueue.Enqueue(firstMsg);
+                            var parsedData = JsonSerializer.Deserialize<JsonReturn>(firstMsg!, SourceGenerationContext.Default.JsonReturn);
+                            if (parsedData != null)
                             {
-                                OpState = parsedData.state;
+                                if (parsedData.Event == "AutoGoto")
+                                {
+                                    if (parsedData.state == "complete" || parsedData.state == "fail")
+                                    {
+                                        OpState = parsedData.state;
+                                    }
+                                    //EventQueue.Enqueue(firstMsg);
+                                }
+                                else if (parsedData.Event != null)
+                                {
+                                    //EventQueue.Enqueue(firstMsg);
+                                }
+                                else
+                                {
+                                    try
+                                    {
+                                        var parsedResponse = JsonSerializer.Deserialize<JsonData>(firstMsg!, SourceGenerationContext.Default.JsonData);
+                                        if (parsedResponse != null)
+                                            ResponseQueue.Enqueue(parsedResponse);
+                                    }
+                                    catch(Exception ex)
+                                    {
+                                        Console.WriteLine(ex.Message);
+                                    }
+                                }
+                                      
+
+                                if (_isDebug)
+                                {
+                                    Console.WriteLine(parsedData);
+                                }
                             }
-                        }
 
-                        if (_isDebug)
-                        {
-                            Console.WriteLine(parsedData);
+                            firstIndex = msgRemainder.IndexOf("\r\n");
                         }
-
-                        firstIndex = msgRemainder.IndexOf("\r\n");
                     }
                 }
-                Thread.Sleep(1000);
+                Thread.Sleep(100);
             }
         }
 
@@ -130,7 +179,7 @@ namespace SeeStarS50Lib
             }
         }
 
-        public void GotoTarget(decimal ra, decimal dec, string targetName, bool is_lp_filter)
+        public void GotoTarget(decimal ra, decimal dec, string targetName, byte is_lp_filter)
         {
             Console.WriteLine($"Going to target. ra: {ra}, dec: {dec}");
 
@@ -175,10 +224,10 @@ namespace SeeStarS50Lib
             }
         }
 
-        public void sleep_with_heartbeat()
+        public void sleep_with_heartbeat(decimal sessionTime)
         {
             int stacking_timer = 0;
-            while (stacking_timer < SessionTime) // stacking time per segment
+            while (stacking_timer < sessionTime) // stacking time per segment
             {
                 if (++stacking_timer % 5 == 0)
                     jsonMessage("test_connection");
@@ -186,8 +235,58 @@ namespace SeeStarS50Lib
             }
         }
 
+        public static void SeeStarRun(Target target, SeeStarS50 telescope)
+        {
+            decimal deltaRA = 0.06M;
+            decimal deltaDec = 0.9M;
 
-        public static void SeeStarRun(string HOST, string TargetName, decimal centerRA, decimal centerDec, bool is_use_LP_filter, int sessionTime, int nRA, int nDec, int mRA, int mDec, bool debug)
+            deltaRA *= target.mRA;
+            deltaDec *= target.mDec;
+
+            // Adjust mosaic center if num panels is even
+            if (target.nRA % 2 == 0)
+                target.RA += deltaRA / 2;
+            if (target.nDec % 2 == 0)
+                target.Dec += deltaDec / 2;
+
+            int mosaicIndex = 0;
+
+            decimal cur_ra = target.RA - (target.nRA / 2) * deltaRA;
+
+            string save_target_name = target.Name;
+
+            foreach (var index_ra in Enumerable.Range(0, target.nRA))
+            {
+                decimal cur_dec = target.Dec - (target.nDec / 2) * deltaDec;
+                foreach (var index_dec in Enumerable.Range(0, target.nDec))
+                {
+                    if (target.nRA != 1 || target.nDec != 1)
+                        save_target_name = $"{target.Name}_{index_ra + 1}{index_dec + 1}";
+                    Console.WriteLine("goto {cur_ra}, {cur_dec}");
+                    telescope.GotoTarget(cur_ra, cur_dec, save_target_name, target.LPFilter);
+                    telescope.WaitEndOp();
+                    Console.WriteLine("Goto operation finished");
+                    Thread.Sleep(3000);
+                    if (telescope.OpState == "complete")
+                    {
+                        telescope.StartStack();
+                        telescope.sleep_with_heartbeat(target.SessionTime*3600);
+                        telescope.StopStack();
+                        Console.WriteLine($"Stacking operation finished {save_target_name}");
+                    }
+                    else
+                    {
+                        Console.WriteLine($"Goto operation failed.");
+                    }
+
+                    cur_dec += deltaDec;
+                    mosaicIndex++;
+                }
+                cur_ra += deltaRA;
+            }
+        }
+
+        public static void SeeStarRun_old(string HOST, string TargetName, decimal centerRA, decimal centerDec, byte is_use_LP_filter, int sessionTime, int nRA, int nDec, int mRA, int mDec, bool debug)
         {
             if (nRA < 1 || nDec < 0)
             {
@@ -205,7 +304,7 @@ namespace SeeStarS50Lib
                 {
                     telescope.jsonMessage("scope_get_equ_coord");
                     var data = telescope.GetResponse();
-                    var parsedData = JsonSerializer.Deserialize<JsonData>(data);
+                    var parsedData = JsonSerializer.Deserialize<JsonData>(data!, SourceGenerationContext.Default.JsonData);
                     var data_result = parsedData.result;
                     centerRA = data_result.ra;
                     centerDec = data_result.dec;
@@ -258,7 +357,7 @@ namespace SeeStarS50Lib
                         if (telescope.OpState == "complete")
                         {
                             telescope.StartStack();
-                            telescope.sleep_with_heartbeat();
+                            telescope.sleep_with_heartbeat(sessionTime*3600);
                             telescope.StopStack();
                             Console.WriteLine($"Stacking operation finished {save_target_name}");
                         }
@@ -273,6 +372,8 @@ namespace SeeStarS50Lib
                     cur_ra += deltaRA;
                 }
 
+                telescope.isWatchEvents = false;
+                get_msg_thread.Wait();
 
             }
 
