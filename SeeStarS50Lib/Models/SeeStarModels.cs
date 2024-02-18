@@ -14,7 +14,8 @@ namespace SeeStarS50Lib.Models
     [JsonSerializable(typeof(JsonDataResult))]
     [JsonSerializable(typeof(JsonParams))]
     [JsonSerializable(typeof(JsonReturn))]
-    internal partial class SourceGenerationContext : JsonSerializerContext
+    [JsonSerializable(typeof(Target))]
+    public partial class SourceGenerationContext : JsonSerializerContext
     {
     }
 
@@ -58,7 +59,7 @@ namespace SeeStarS50Lib.Models
         {
             mode = "star";
             targetRaDec = new decimal[] { -1, -1 };
-            lpFilter = false;
+            lpFilter = 0;
         }
 
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
@@ -75,7 +76,7 @@ namespace SeeStarS50Lib.Models
 
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         [JsonPropertyName("lp_filter")]
-        public bool? lpFilter { get; set; }
+        public byte? lpFilter { get; set; }
 
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         [JsonPropertyName("restart")]
@@ -84,5 +85,34 @@ namespace SeeStarS50Lib.Models
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         [JsonPropertyName("stage")]
         public string stage { get; set; }
+    }
+
+    public class Target
+    {
+        public Target()
+        {
+            Name = "";
+        }
+        public Target(string Name, decimal RA, decimal Dec, byte LPFilter, decimal SessionTime, int nRA, int nDec, decimal mRA, decimal mDec)
+        {
+            this.Name = Name;
+            this.RA = RA;
+            this.Dec = Dec;
+            this.LPFilter = LPFilter;
+            this.SessionTime = SessionTime;
+            this.nRA = nRA;
+            this.nDec = nDec;
+            this.mRA = mRA;
+            this.mDec = mDec;
+        }
+        public string Name { get; set; }
+        public decimal RA { get; set; }
+        public decimal Dec { get; set; }
+        public byte LPFilter { get; set; }
+        public decimal SessionTime { get; set; }
+        public int nRA { get; set; }
+        public int nDec { get; set; }
+        public decimal mRA { get; set; }
+        public decimal mDec { get; set; }
     }
 }
