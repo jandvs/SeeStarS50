@@ -3,13 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.8.34330.188
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SeeStarS50Lib", "SeeStarS50Lib\SeeStarS50Lib.csproj", "{56FBD11F-41B3-46D8-A653-74C80E3DF4F3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SeeStarS50Lib", "SeeStarS50Lib\SeeStarS50Lib.csproj", "{56FBD11F-41B3-46D8-A653-74C80E3DF4F3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SeeStarS50Console", "SeeStarS50Console\SeeStarS50Console.csproj", "{7D77237C-B5F1-45A1-A7D1-70E9B3E4DEF1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SeeStarS50GUI", "SeeStarS50GUI\SeeStarS50GUI.csproj", "{F3DAE145-A9F5-40DE-9061-B7FD6CAEE6DA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SeeStarS50Lib_Maui", "SeeStarS50Lib_Maui\SeeStarS50Lib_Maui.csproj", "{6BAA685D-C31E-4559-8983-BA9EE3993581}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SeeStarS50GUI", "SeeStarS50GUI\SeeStarS50GUI.csproj", "{F3DAE145-A9F5-40DE-9061-B7FD6CAEE6DA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SeeStarS50CompanionConsole", "SeeStarS50CompanionConsole\SeeStarS50CompanionConsole.csproj", "{6AB999AD-20C8-4111-BC0F-49B9B80D14F6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,18 +19,14 @@ Global
 		{56FBD11F-41B3-46D8-A653-74C80E3DF4F3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{56FBD11F-41B3-46D8-A653-74C80E3DF4F3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{56FBD11F-41B3-46D8-A653-74C80E3DF4F3}.Release|Any CPU.Build.0 = Release|Any CPU
-		{7D77237C-B5F1-45A1-A7D1-70E9B3E4DEF1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{7D77237C-B5F1-45A1-A7D1-70E9B3E4DEF1}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{7D77237C-B5F1-45A1-A7D1-70E9B3E4DEF1}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{7D77237C-B5F1-45A1-A7D1-70E9B3E4DEF1}.Release|Any CPU.Build.0 = Release|Any CPU
-		{6BAA685D-C31E-4559-8983-BA9EE3993581}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{6BAA685D-C31E-4559-8983-BA9EE3993581}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{6BAA685D-C31E-4559-8983-BA9EE3993581}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{6BAA685D-C31E-4559-8983-BA9EE3993581}.Release|Any CPU.Build.0 = Release|Any CPU
 		{F3DAE145-A9F5-40DE-9061-B7FD6CAEE6DA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{F3DAE145-A9F5-40DE-9061-B7FD6CAEE6DA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F3DAE145-A9F5-40DE-9061-B7FD6CAEE6DA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F3DAE145-A9F5-40DE-9061-B7FD6CAEE6DA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6AB999AD-20C8-4111-BC0F-49B9B80D14F6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6AB999AD-20C8-4111-BC0F-49B9B80D14F6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6AB999AD-20C8-4111-BC0F-49B9B80D14F6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6AB999AD-20C8-4111-BC0F-49B9B80D14F6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
