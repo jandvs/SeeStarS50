@@ -7,27 +7,27 @@ using System.Threading.Tasks;
 
 namespace SeeStarS50Lib.Models
 {
-
-
     [JsonSourceGenerationOptions(WriteIndented = true)]
-    [JsonSerializable(typeof(JsonData))]
-    [JsonSerializable(typeof(JsonDataResult))]
+    [JsonSerializable(typeof(CmdData))]
+    [JsonSerializable(typeof(CmdDataWithRaDec))]
+    [JsonSerializable(typeof(CmdDataResultRaDec))]
     [JsonSerializable(typeof(JsonParams))]
-    [JsonSerializable(typeof(JsonReturn))]
+    [JsonSerializable(typeof(EventResponse))]
     [JsonSerializable(typeof(Target))]
     public partial class SourceGenerationContext : JsonSerializerContext
     {
     }
 
-    public class JsonReturn
+    public class EventResponse
     {
         public string Event { get; set; }
+        public double TimeStamp { get; set; }
         public string state { get; set; }
     }
-    
-    public class JsonData
+
+    public class CmdData
     {
-        public JsonData()
+        public CmdData()
         {
             id = "";
             method = "";
@@ -41,24 +41,32 @@ namespace SeeStarS50Lib.Models
 
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         [JsonPropertyName("params")]
-        public JsonParams parameters { get; set; }
+        public JsonParams? parameters { get; set; }
 
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
-        public JsonDataResult result { get; set; }
+        //public string result { get; set; }
+        public new CmdDataResultRaDec? result { get; set; }
     }
 
-    public class JsonDataResult
+    public class CmdDataWithRaDec : CmdData
     {
-        public decimal ra { get; set; }
-        public decimal dec { get; set; }
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        public new CmdDataResultRaDec? result { get; set; }
     }
+
+    public class CmdDataResultRaDec
+    {
+        public double ra { get; set; }
+        public double dec { get; set; }
+    }
+
 
     public class JsonParams
     {
         public JsonParams()
         {
             mode = "star";
-            targetRaDec = new decimal[] { -1, -1 };
+            targetRaDec = new double[] { -1, -1 };
             lpFilter = 0;
         }
 
@@ -68,7 +76,7 @@ namespace SeeStarS50Lib.Models
 
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         [JsonPropertyName("target_ra_dec")]
-        public Decimal[] targetRaDec { get; set; }
+        public double[] targetRaDec { get; set; }
 
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         [JsonPropertyName("target_name")]
@@ -85,6 +93,18 @@ namespace SeeStarS50Lib.Models
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         [JsonPropertyName("stage")]
         public string stage { get; set; }
+
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        [JsonPropertyName("speed")]
+        public double? speed { get; set; }
+
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        [JsonPropertyName("angle")]
+        public double? angle { get; set; }
+
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        [JsonPropertyName("dur_sec")]
+        public int? dur_sec { get; set; }
     }
 
     public class Target
@@ -93,7 +113,7 @@ namespace SeeStarS50Lib.Models
         {
             Name = "";
         }
-        public Target(string Name, decimal RA, decimal Dec, byte LPFilter, decimal SessionTime, int nRA, int nDec, decimal mRA, decimal mDec)
+        public Target(string Name, double RA, double Dec, byte LPFilter, double SessionTime, int nRA, int nDec, double mRA, double mDec)
         {
             this.Name = Name;
             this.RA = RA;
@@ -106,13 +126,15 @@ namespace SeeStarS50Lib.Models
             this.mDec = mDec;
         }
         public string Name { get; set; }
-        public decimal RA { get; set; }
-        public decimal Dec { get; set; }
+        public double RA { get; set; }
+        public double Dec { get; set; }
         public byte LPFilter { get; set; }
-        public decimal SessionTime { get; set; }
+        public double SessionTime { get; set; }
         public int nRA { get; set; }
         public int nDec { get; set; }
-        public decimal mRA { get; set; }
-        public decimal mDec { get; set; }
+        public double mRA { get; set; }
+        public double mDec { get; set; }
+
+        public int SubExposure { get; set; }
     }
 }

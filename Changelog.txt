@@ -1,0 +1,70 @@
+================================================================================================
+2/22/2024 V0.02 (Alpha)
+================================================================================================
+
+* Edit/Copy a target in the list.
+   Right click on the target and select Edit or Copy.  Both options will fill out the form with the target's data.
+   If it was an Edit, it will replace the original target when you click Update.
+   If it was a Copy, it will add the new target to the end of the list when you click Add.
+
+* Progress bars for each target (based on session time)
+
+* Skip current target and allow it to move on to next target
+
+* Cancel all targets
+
+* Save/Load target lists with custom filename, for multiple target lists.
+  Default save location for target lists is your users documents folder.
+
+* Pull RA/DEC + Object Name from Stellarium
+  For this feature to work, you must enable the Remote Control plugin in Stellarium.
+  Then enter the IP and port of the computer running Stellarium in the settings of this app.
+  Format is IP:Port, for example:   192.168.1.100:8090
+  The app will save this setting in a config file in the same folder as the app and reload it automaticaly.
+
+* Allow to set the exposure time for each target.
+  Any exposure time of 30 seconds or less should work automatically.
+  For longer exposure times, it is vitally important that you first do a 30 second exposure capture using
+  the seestar app, so that it will have the darkframes for exposure length.
+  Then this app will trick the seestar into thinking it's going to do 30 second exposures, but it will
+  actually do the longer exposure time you set here.
+  I've gotten it to do a 1500 second exposure during my tests.
+  No point in doing this if not mounted in EQ-Mode, as the stars will trail.
+
+
+
+================================================================================================
+Initial version
+================================================================================================
+  .Net8 GUI app to do schdule planning and control of SeeStar.
+  Ability to pull RA/Dec from SeeStar.
+  Ability to do mosaic targets.
+
+
+
+================================================================================================
+Future TODO
+================================================================================================
+
+Generate Script (Hopefully cross platform)
+
+Connect to multiple SeeStars
+   synced or independent?
+
+Target list to include a Time to Start
+  Start Time can be ASAP and ordered by the order it was added, set time take precedence.
+  If there is overlap conflict, the later target start after the earlier one finishes.
+  List auto sorts by start time.
+
+Session Time can be ALAN, meaning you must end it manually.
+  Not sure if the SeeStar reports back total integration time on a target, maybe there can be a trigger for that.
+
+Target to specify which SeeStar to use, when connected to multiple
+
+If target is mosaic, then specify different SeeStars to handle tiles?
+   or maybe if you want a mosaic, it splits it out into seperate targets for the tiles and each can then be assigned to a SeeStar?
+
+Target to include sub exposure time (5s, 10s 15s, 20s, 30s, 1m, 2, 3m, 5m, 8m, 13m, 21m, 34m)
+
+Search for Target by name, either via Stellarium or possible include object libraries in the app. Probably stellarium first.
+
