@@ -1,0 +1,11 @@
+C:\Users\james.smith\OneDrive - Avantax, Inc\Documents\Visual Studio Misc Projects\SeeStarS50Lib\SeeStarS50Lib\obj\Debug\net8.0\SeeStarS50Lib.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\james.smith\OneDrive - Avantax, Inc\Documents\Visual Studio Misc Projects\SeeStarS50Lib\SeeStarS50Lib\obj\Debug\net8.0\SeeStarS50Lib.AssemblyInfoInputs.cache
+C:\Users\james.smith\OneDrive - Avantax, Inc\Documents\Visual Studio Misc Projects\SeeStarS50Lib\SeeStarS50Lib\obj\Debug\net8.0\SeeStarS50Lib.AssemblyInfo.cs
+C:\Users\james.smith\OneDrive - Avantax, Inc\Documents\Visual Studio Misc Projects\SeeStarS50Lib\SeeStarS50Lib\obj\Debug\net8.0\SeeStarS50Lib.csproj.CoreCompileInputs.cache
+C:\Users\james.smith\OneDrive - Avantax, Inc\Documents\Visual Studio Misc Projects\SeeStarS50Lib\SeeStarS50Lib\bin\Debug\net8.0\SeeStarS50Lib.deps.json
+C:\Users\james.smith\OneDrive - Avantax, Inc\Documents\Visual Studio Misc Projects\SeeStarS50Lib\SeeStarS50Lib\bin\Debug\net8.0\SeeStarS50Lib.dll
+C:\Users\james.smith\OneDrive - Avantax, Inc\Documents\Visual Studio Misc Projects\SeeStarS50Lib\SeeStarS50Lib\bin\Debug\net8.0\SeeStarS50Lib.pdb
+C:\Users\james.smith\OneDrive - Avantax, Inc\Documents\Visual Studio Misc Projects\SeeStarS50Lib\SeeStarS50Lib\obj\Debug\net8.0\SeeStarS50Lib.dll
+C:\Users\james.smith\OneDrive - Avantax, Inc\Documents\Visual Studio Misc Projects\SeeStarS50Lib\SeeStarS50Lib\obj\Debug\net8.0\refint\SeeStarS50Lib.dll
+C:\Users\james.smith\OneDrive - Avantax, Inc\Documents\Visual Studio Misc Projects\SeeStarS50Lib\SeeStarS50Lib\obj\Debug\net8.0\SeeStarS50Lib.pdb
+C:\Users\james.smith\OneDrive - Avantax, Inc\Documents\Visual Studio Misc Projects\SeeStarS50Lib\SeeStarS50Lib\obj\Debug\net8.0\ref\SeeStarS50Lib.dll
