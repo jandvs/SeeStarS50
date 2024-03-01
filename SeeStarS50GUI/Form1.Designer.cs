@@ -632,7 +632,7 @@
             Controls.Add(lstTargetList);
             Controls.Add(btnSkipTarget);
             Name = "Form1";
-            Text = "SeeStar S50 Companion V0.02 (Alpha)";
+            Text = "SeeStar S50 Companion V0.03 (Alpha)";
             Load += Form1_Load;
             cmsSync.ResumeLayout(false);
             cmsTargets.ResumeLayout(false);
