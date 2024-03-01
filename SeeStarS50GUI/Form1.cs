@@ -140,7 +140,7 @@ namespace SeeStarS50GUI
                 string message;
                 if (telescope.EventQueue.TryDequeue(out message))
                 {
-                    lstEvents.Items.Insert(0, message);
+                    lstEvents.Items.Add(message);
                 }
             }
 
@@ -456,6 +456,7 @@ namespace SeeStarS50GUI
 
             mtxtRA.Text = "  h   m   .    s";
             mtxtDec.Text = "+  °   '   .    \"";
+            txtTargetName.Text = "";
 
             if (e.ClickedItem == toolSyncFromSeeStar)
             {
@@ -490,10 +491,12 @@ namespace SeeStarS50GUI
 
 
 
-                var start = content.IndexOf("RA/Dec (on date):");
+                var start = content.IndexOf("(J2000.0):");
                 if (start != -1)
                 {
-                    start += 17;
+                    start = content.IndexOf("<br/>", start);
+                    start = content.IndexOf(":", start);
+                    start += 1;
                     var end = content.IndexOf("<br/>", start);
                     var RaDec = content.Substring(start, end - start).Trim();
                     var RaDecSplit = RaDec.Split('/');

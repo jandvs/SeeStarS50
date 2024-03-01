@@ -240,7 +240,7 @@
             lstTargetList.Location = new Point(10, 394);
             lstTargetList.MultiSelect = false;
             lstTargetList.Name = "lstTargetList";
-            lstTargetList.Size = new Size(679, 249);
+            lstTargetList.Size = new Size(679, 168);
             lstTargetList.TabIndex = 14;
             lstTargetList.Tag = "";
             lstTargetList.UseCompatibleStateImageBehavior = false;
@@ -328,7 +328,7 @@
             // btnStart
             // 
             btnStart.Font = new Font("Segoe UI", 11F);
-            btnStart.Location = new Point(10, 649);
+            btnStart.Location = new Point(10, 573);
             btnStart.Name = "btnStart";
             btnStart.Size = new Size(119, 36);
             btnStart.TabIndex = 15;
@@ -448,10 +448,10 @@
             lstEvents.FormattingEnabled = true;
             lstEvents.HorizontalScrollbar = true;
             lstEvents.ItemHeight = 15;
-            lstEvents.Location = new Point(6, 707);
+            lstEvents.Location = new Point(6, 617);
             lstEvents.Name = "lstEvents";
             lstEvents.ScrollAlwaysVisible = true;
-            lstEvents.Size = new Size(683, 199);
+            lstEvents.Size = new Size(683, 109);
             lstEvents.TabIndex = 29;
             // 
             // cmsEvents
@@ -482,7 +482,7 @@
             // 
             // prgProgress
             // 
-            prgProgress.Location = new Point(135, 657);
+            prgProgress.Location = new Point(135, 581);
             prgProgress.Name = "prgProgress";
             prgProgress.Size = new Size(362, 23);
             prgProgress.TabIndex = 30;
@@ -490,7 +490,7 @@
             // lblTargetProgress
             // 
             lblTargetProgress.AutoSize = true;
-            lblTargetProgress.Location = new Point(155, 661);
+            lblTargetProgress.Location = new Point(155, 585);
             lblTargetProgress.Name = "lblTargetProgress";
             lblTargetProgress.Size = new Size(42, 15);
             lblTargetProgress.TabIndex = 31;
@@ -499,7 +499,7 @@
             // lblTileNumber
             // 
             lblTileNumber.AutoSize = true;
-            lblTileNumber.Location = new Point(444, 661);
+            lblTileNumber.Location = new Point(444, 585);
             lblTileNumber.Name = "lblTileNumber";
             lblTileNumber.Size = new Size(28, 15);
             lblTileNumber.TabIndex = 32;
@@ -508,7 +508,7 @@
             // btnSkipTarget
             // 
             btnSkipTarget.Font = new Font("Segoe UI", 11F);
-            btnSkipTarget.Location = new Point(503, 649);
+            btnSkipTarget.Location = new Point(503, 573);
             btnSkipTarget.Name = "btnSkipTarget";
             btnSkipTarget.Size = new Size(90, 36);
             btnSkipTarget.TabIndex = 33;
@@ -519,7 +519,7 @@
             // btnCancelAll
             // 
             btnCancelAll.Font = new Font("Segoe UI", 11F);
-            btnCancelAll.Location = new Point(599, 649);
+            btnCancelAll.Location = new Point(599, 573);
             btnCancelAll.Name = "btnCancelAll";
             btnCancelAll.Size = new Size(90, 36);
             btnCancelAll.TabIndex = 34;
@@ -618,7 +618,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(701, 921);
+            ClientSize = new Size(701, 738);
             Controls.Add(Target);
             Controls.Add(grpStellerium);
             Controls.Add(btnCancelAll);
